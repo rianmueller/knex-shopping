@@ -1,7 +1,10 @@
 exports.up = function(knex) {
   return knex.schema.createTable("products", table => {
     table.increments(); // creates column id SERIAL PRIMARY KEY
-    table.string("title").notNullable(); // creates column title, VARCHAR(255) NOT NULL
+    table
+      .string("title")
+      .unique()
+      .notNullable(); // creates column title, VARCHAR(255) NOT NULL
     table.text("description").notNullable();
     table.integer("inventory").notNullable();
     table.decimal("price").notNullable();
